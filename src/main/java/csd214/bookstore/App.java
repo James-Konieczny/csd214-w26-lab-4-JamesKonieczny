@@ -85,6 +85,8 @@ public class App {
         System.out.println("4. Ticket");
         System.out.println("5. Pen");
         System.out.println("6. Notebook");
+        System.out.println("7. Add Bowling Shoes");
+        System.out.println("8. Add Bowling Ball");
         System.out.println("99. Back");
 
         int choice = getIntInput();
@@ -158,6 +160,36 @@ public class App {
                     nEnt.setName(nPojo.getPageCount() + "pg " + nPojo.getBrand() + " Notebook");
                     em.persist(nEnt);
                     break;
+                case 7:
+                    BowlingShoes bsPojo = new BowlingShoes();
+                    bsPojo.initialize(input);
+                    BowlingShoesEntity bsEnt = new BowlingShoesEntity();
+                    bsEnt.setName(bsPojo.getName());
+                    bsEnt.setBrand(bsPojo.getBrand());
+                    bsEnt.setPrice(bsPojo.getPrice());
+                    bsEnt.setMaintenanceRequired(bsPojo.isMaintenanceRequired());
+                    bsEnt.setSkillLevel(bsPojo.getSkillLevel());
+                    bsEnt.setShoeSize(bsPojo.getShoeSize());
+                    bsEnt.setColor(bsPojo.getColor());
+                    bsEnt.setSole(bsPojo.getSole());
+                    bsEnt.setMainMaterial(bsPojo.getMainMaterial());
+                    em.persist(bsEnt);
+                    break;
+                case 8:
+                    BowlingBall bbPojo = new BowlingBall();
+                    bbPojo.initialize(input);
+                    BowlingBallEntity bbEnt = new BowlingBallEntity();
+                    bbEnt.setName(bbPojo.getName());
+                    bbEnt.setBrand(bbPojo.getBrand());
+                    bbEnt.setPrice(bbPojo.getPrice());
+                    bbEnt.setMaintenanceRequired(bbPojo.isMaintenanceRequired());
+                    bbEnt.setSkillLevel(bbPojo.getSkillLevel());
+                    bbEnt.setWeight(bbPojo.getWeight());
+                    bbEnt.setColor(bbPojo.getColor());
+                    bbEnt.setCoverstock(bbPojo.getCoverstock());
+                    bbEnt.setCore(bbPojo.getCore());
+                    em.persist(bbEnt);
+                    break;
                 default:
                     System.out.println("Invalid type.");
             }
@@ -224,6 +256,36 @@ public class App {
                 pe.setBrand(pojo.getBrand());
                 pe.setPrice(pojo.getPrice());
                 pe.setColor(pojo.getColor());
+            }
+            else if (entity instanceof BowlingShoesEntity) {
+                BowlingShoesEntity bs = (BowlingShoesEntity) entity;
+                BowlingShoes pojo = new BowlingShoes(bs.getProductId(), bs.getName(), bs.getPrice(), bs.getBrand(), bs.isMaintenanceRequired(), bs.getSkillLevel(), bs.getShoeSize(), bs.getColor(), bs.getSole(), bs.getMainMaterial());
+                pojo.edit(input);
+                bs.setProductId(pojo.getProductId());
+                bs.setName(pojo.getName());
+                bs.setBrand(pojo.getBrand());
+                bs.setPrice(pojo.getPrice());
+                bs.setMaintenanceRequired(pojo.isMaintenanceRequired());
+                bs.setSkillLevel(pojo.getSkillLevel());
+                bs.setShoeSize(pojo.getShoeSize());
+                bs.setColor(pojo.getColor());
+                bs.setSole(pojo.getSole());
+                bs.setMainMaterial(pojo.getMainMaterial());
+            }
+            else if (entity instanceof BowlingBallEntity) {
+                BowlingBallEntity bb = (BowlingBallEntity) entity;
+                BowlingBall pojo = new BowlingBall(bb.getProductId(), bb.getName(), bb.getPrice(), bb.getBrand(), bb.isMaintenanceRequired(), bb.getSkillLevel(), bb.getWeight(), bb.getColor(), bb.getCoverstock(), bb.getCore());
+                pojo.edit(input);
+                bb.setProductId(pojo.getProductId());
+                bb.setName(pojo.getName());
+                bb.setBrand(pojo.getBrand());
+                bb.setPrice(pojo.getPrice());
+                bb.setMaintenanceRequired(pojo.isMaintenanceRequired());
+                bb.setSkillLevel(pojo.getSkillLevel());
+                bb.setWeight(pojo.getWeight());
+                bb.setColor(pojo.getColor());
+                bb.setCoverstock(pojo.getCoverstock());
+                bb.setCore(pojo.getCore());
             }
             // ... (Other types would follow similar pattern) ...
             else {
