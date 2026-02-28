@@ -52,6 +52,16 @@ classDiagram
         +Stationery(String, double)
     }
 
+    class BowlingSupply {
+        <<abstract>>
+        -String brand
+        -boolean maintenanceRequired
+        +BowlingSupply()
+        +BowlingSupply(String, String, double, String, boolean, String)
+        +initialize(Scanner)
+        +edit(Scanner)
+    }
+
     %% Concrete Classes
     class Ticket {
         -String description
@@ -101,6 +111,30 @@ classDiagram
         +Truck(..., double)
     }
 
+    class BowlingBall {
+        -int weight
+        -String color
+        -String coverstock
+        -String core
+        +BowlingBall()
+        +BowlingBall(String, String, double, String, boolean, String, int, String, String, String)
+        +initialize(Scanner)
+        +edit(Scanner)
+        +sellItem()
+    }
+
+    class BowlingShoes {
+        -int shoeSize
+        -String color
+        -String sole
+        -String mainMaterial
+        +BowlingShoes()
+        +BowlingShoes(String, String, double, String, boolean, String, int, String, String, String)
+        +initialize(Scanner)
+        +edit(Scanner)
+        +sellItem()
+    }
+
     %% Application Logic
     class CashTill {
         -double runningTotal
@@ -147,3 +181,7 @@ classDiagram
     App o-- SaleableItem : manages
     App --> CashTill : uses
     Main --> App : creates
+
+    Product <|-- BowlingSupply
+    BowlingSupply <|-- BowlingBall
+    BowlingSupply <|-- BowlingShoes
