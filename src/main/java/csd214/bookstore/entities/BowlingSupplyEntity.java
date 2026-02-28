@@ -2,7 +2,6 @@ package csd214.bookstore.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
 import java.util.Objects;
 
 @Entity
@@ -45,7 +44,7 @@ public class BowlingSupplyEntity extends ProductEntity {
 
     @Override
     public String toString() {
-        return "BowlingSupply{" +
+        return "BowlingSupplyEntity{" +
                 "brand= " + brand +
                 ", is maintenance required= " + maintenanceRequired +
                 ", skill level= " + skillLevel +
